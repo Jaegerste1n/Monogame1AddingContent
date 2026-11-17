@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Reflection.Emit;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +13,7 @@ namespace Monogame1AddingContent
 
         Rectangle window;
         Texture2D dinoTexture, houseTexture;
+        Vector2 houseLocation;
 
         public Game1()
         {
@@ -25,9 +28,15 @@ namespace Monogame1AddingContent
             // TODO: Add your initialization logic here
             window = new Rectangle(0, 0, 800, 500);
             this.Window.Title = "Coagulate Gangrene Apotheosis Genesis 2003 Pecial Edition";
+            
             _graphics.PreferredBackBufferWidth = window.Width;
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
+
+            Random generator = new Random();
+            int houseX = generator.Next(1, 400);
+            int houseY = generator.Next(1, 300);
+            houseLocation = new Vector2(houseX, houseY);
             base.Initialize();
         }
 
@@ -55,12 +64,20 @@ namespace Monogame1AddingContent
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            _spriteBatch.Draw(dinoTexture, new Vector2(10, 10), Color.White);
-            _spriteBatch.Draw(dinoTexture, new Vector2(20, 20), Color.Red);
-            _spriteBatch.Draw(dinoTexture, new Vector2(30, 30), Color.Yellow);
-            _spriteBatch.Draw(dinoTexture, new Vector2(40, 40), Color.Blue);
-            _spriteBatch.Draw(houseTexture, new Vector2(500, 80), Color.White);
-            _spriteBatch.Draw(houseTexture, new Vector2(100, 80), Color.Red);
+            
+            for (int i = 0; i < 4; i++)
+            {
+                int forY = i * 5;
+                int forX = i * 200;
+                _spriteBatch.Draw(houseTexture, new Vector2(forX, forY), Color.White);
+            }
+            _spriteBatch.Draw(houseTexture, new Vector2(300, 80), Color.White);
+            _spriteBatch.Draw(dinoTexture, new Vector2(10, 100), Color.White);
+            _spriteBatch.Draw(dinoTexture, new Vector2(20, 200), Color.Red);
+            _spriteBatch.Draw(dinoTexture, new Vector2(30, 300), Color.Yellow);
+            _spriteBatch.Draw(dinoTexture, new Vector2(40, 400), Color.Blue);
+            
+            _spriteBatch.Draw(houseTexture, houseLocation, Color.Red);
             base.Draw(gameTime);
             _spriteBatch.End();
         }
