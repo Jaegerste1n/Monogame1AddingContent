@@ -12,7 +12,7 @@ namespace Monogame1AddingContent
         private SpriteBatch _spriteBatch;
 
         Rectangle window;
-        Texture2D dinoTexture, houseTexture;
+        Texture2D dinoTexture, houseTexture, ramTexture, cpuTexture, ssdTexture, powersupplyTexture, mariodeadTexture, mariomadTexture, outputsTexture, doorTexture;
         Vector2 houseLocation;
 
         public Game1()
@@ -45,6 +45,14 @@ namespace Monogame1AddingContent
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             dinoTexture = Content.Load<Texture2D>("dino");
             houseTexture = Content.Load<Texture2D>("house");
+            ramTexture = Content.Load<Texture2D>("ram");
+            cpuTexture = Content.Load<Texture2D>("cpu");
+            ssdTexture = Content.Load<Texture2D>("ssd");
+            powersupplyTexture = Content.Load<Texture2D>("powersupply");
+            mariomadTexture = Content.Load<Texture2D>("mariomad");
+            mariodeadTexture = Content.Load<Texture2D>("mariodead");
+            outputsTexture = Content.Load<Texture2D>("outputs");
+            doorTexture = Content.Load<Texture2D>("door");
             // TODO: use this.Content to load your game content here
         }
 
@@ -72,6 +80,10 @@ namespace Monogame1AddingContent
                 _spriteBatch.Draw(houseTexture, new Vector2(forX, forY), Color.White);
             }
             _spriteBatch.Draw(houseTexture, new Vector2(300, 80), Color.White);
+            _spriteBatch.Draw(mariodeadTexture, new Vector2(0, 200), Color.White);
+            _spriteBatch.Draw(mariomadTexture, new Vector2(100, 200), Color.White);
+            _spriteBatch.Draw(doorTexture, new Vector2(0, 200), Color.White);
+            _spriteBatch.Draw(outputsTexture, new Vector2(600, 200), Color.White);
             _spriteBatch.Draw(dinoTexture, new Vector2(10, 100), Color.White);
             _spriteBatch.Draw(dinoTexture, new Vector2(20, 200), Color.Red);
             _spriteBatch.Draw(dinoTexture, new Vector2(30, 300), Color.Yellow);
